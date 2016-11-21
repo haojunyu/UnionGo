@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="section">
+    <view class="title">集结口令</view>
+    <view class="input">
+      <input placeholder="" value="{{title}}" />
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="title">集结描述</view>
+    <view class="input">
+      <textarea placeholder="" value="{{desc}}"/>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="title">集结日期</view>
+    <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+      <view class="input">
+        {{date}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="section">
+    <view class="title">集结时间</view>
+    <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+      <view class="input">
+        {{time}}
+      </view>
+    </picker>
+  </view>
+
+
+  <view class="section">
+    <view class="title">集结地点</view>
+    <view class="map">
+        <map longitude="113.324520" latitude="23.099994" markers="{{markers}}" 
+        covers="{{covers}}" 
+        style="width: auto; height: 200px; font-size: 0.8em;">
+        </map>
+    </view>
+  </view>

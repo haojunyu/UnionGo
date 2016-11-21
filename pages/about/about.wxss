@@ -1,0 +1,23 @@
+.container {
+    align-items: center;
+}
+.about {
+    margin-left: 70rpx;
+    margin-right: 70rpx;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.title {
+    font-size: 1rem;
+    margin-bottom: 40rpx;
+    margin-top: 20rpx;
+    color: #00cc99
+}
+
+.logo {
+  width: 170rpx;
+  height: 170rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}

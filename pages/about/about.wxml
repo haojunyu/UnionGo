@@ -1,0 +1,12 @@
+<!--about.wxml-->
+<view class="container">
+  <image class="logo" src="{{src}}" background-size="cover">
+  </image>
+  <view class="about">
+    <!--<text class="userinfo-nickname">{{userInfo.nickName}}</text>-->
+    <view class="title">UnionGo集结号</view>
+    UnionGo是一款LBS的微信小程序,
+    旨在方便地提供基于地理位置的活动召集和签到功能
+  </view>
+  
+</view>
