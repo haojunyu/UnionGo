@@ -6,18 +6,18 @@
   </view>
 
   <view class="section-title"><text>发起的UnionGo</text></view>
-  <scroll-view class="list" wx:for="{{raisedActivities}}" wx:key="key" wx:for-item="item">
-      <button class="item" bindtap="viewDetail" data-id="{{item.id}}"><icon type="info" size="14"/>
+  <view class="list" wx:for="{{raisedActivities}}" wx:key="key" wx:for-item="item">
+       <button class="item" bindtap="viewDetail" data-id="{{item.id}}"><icon type="info" size="14"/>
       {{item.title}}</button>
-  </scroll-view>
+  </view>
 
   <view class="section-title">参与的UnionGo</view>
-  <scroll-view class="list" wx:for="{{attendedActivites}}" wx:key="key" wx:for-item="item">
+  <view class="list" wx:for="{{attendedActivites}}" wx:key="key" wx:for-item="item">
       <button class="item" bindtap="viewDetail" data-id="{{item.id}}"><icon type="success" size="14"/>{{item.title}}</button>
-  </scroll-view>
+  </view>
 
   <view class="section-title">UnionGo推送</view>
-  <scroll-view class="list" wx:for="{{moreActivities}}" wx:key="key" wx:for-item="item">
+  <view class="list" wx:for="{{moreActivities}}" wx:key="key" wx:for-item="item">
       <button class="item" bindtap="viewDetail" data-id="{{item.id}}"><icon type="warn" size="14"/>{{item.title}}</button>
-  </scroll-view>
+  </view>
 </view>

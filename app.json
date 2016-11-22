@@ -17,18 +17,18 @@
     "list": [{
       "pagePath": "pages/index/index",
       "text": "首页",
-      "iconPath": "../../../imgs/home.png",
-      "selectedIconPath": "../../../imgs/home-actived.png"
+      "iconPath": "imgs/home.png",
+      "selectedIconPath": "imgs/home-actived.png"
     }, {
       "pagePath": "pages/create/create",
       "text": "发起集结",
-      "iconPath": "../../../imgs/board.png",
-      "selectedIconPath": "../../../imgs/board-actived.png"
+      "iconPath": "imgs/board.png",
+      "selectedIconPath": "imgs/board-actived.png"
     }, {
       "pagePath": "pages/about/about",
       "text": "关于",
-      "iconPath": "../../../imgs/profile.png",
-      "selectedIconPath": "../../../imgs/profile-actived.png"
+      "iconPath": "imgs/profile.png",
+      "selectedIconPath": "imgs/profile-actived.png"
     }],
     "backgroundColor": "#00cc99",
     "borderStyle": "white",

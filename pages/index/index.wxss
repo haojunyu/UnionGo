@@ -6,28 +6,29 @@
 }
 
 .userinfo-avatar {
-  width: 80rpx;
-  height: 80rpx;
+  width: 100rpx;
+  height: 100rpx;
   margin-top: -150rpx;
   border-radius: 70%;
 }
 
 .userinfo-nickname {
   color: #aaa;
-  font-size: 0.7em;
+  font-size: 0.8em;
   margin-top: 10rpx;
 }
 
 .usermotto {
-  margin-top: 200px;
+  margin-top: 200rpx;
 }
 
-.item {
-  margin: 10rpx 20rpx;
-  height: 70rpx;
-  font-size: 0.8em;
-  text-align: left;
+button {
+    height: 80rpx;
+    font-size: 0.8em;
+    margin: 10rpx 20rpx;
+    text-align: left;
 }
+
 icon {
   margin-right: 20rpx;
 }
@@ -39,6 +40,6 @@ icon {
 .section-title {
   font-size: 0.8em;
   color: #009933;
-  margin-top: 60rpx;
   margin-left: 20rpx;
+  margin-top: 20rpx;
 }
