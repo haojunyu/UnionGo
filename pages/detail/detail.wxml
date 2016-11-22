@@ -2,14 +2,14 @@
   <view class="section">
     <view class="title">集结口令</view>
     <view class="input">
-      <input placeholder="" value="{{title}}" />
+      <input value="{{title}}" />
     </view>
   </view>
 
   <view class="section">
     <view class="title">集结描述</view>
     <view class="input">
-      <textarea placeholder="" value="{{desc}}"/>
+      <textarea value="{{desc}}"/>
     </view>
   </view>
 

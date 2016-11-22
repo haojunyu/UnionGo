@@ -17,28 +17,29 @@ Page ({
   onLoad: function(option){
     console.log(option.id)
     var id = option.id;
+    var category = option.category
     var that = this;
-    wx.getStorage({
-        key: id,
-        success: function(res) {
-            var activity = res.data
-            that.setData({
-                id: activity.id,
-                title: activity.title,
-                desc: activity.desc,
-                date: activity.date,
-                time: activity.time,
-                _type: activity._type,
-                markers: [{
-                    latitude: activity.location.latitude,
-                    longitude: activity.location.longitude,
-                    name: '集合点'
-                }]
-            })
-        } 
-    })
+    var sets = wx.getStorageSync(category)
+    var activity
+    for (let i=0; i<sets.length; ++i) {
+      if (sets[i].id == id) {
+        activity = sets[i]
+        break
+      }
+    }
+
+    that.setData({
+        id: activity.id,
+        title: activity.title,
+        desc: activity.desc,
+        date: activity.date,
+        time: activity.time,
+        _type: activity._type,
+        markers: [{
+            latitude: activity.location.latitude,
+            longitude: activity.location.longitude,
+            name: '集合点'
+        }]
+    })    
   }
-
-
-
 })

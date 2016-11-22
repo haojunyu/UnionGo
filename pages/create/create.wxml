@@ -2,14 +2,14 @@
   <view class="section">
     <view class="title">集结口令</view>
     <view class="input">
-      <input placeholder="" focus="{{focus}}" />
+      <input value="{{title}}" bindinput="bindTitleChange"/>
     </view>
   </view>
 
   <view class="section">
     <view class="title">集结描述</view>
     <view class="input">
-      <textarea placeholder="" focus="{{focus}}" />
+      <textarea value="{{desc}}" bindblur="bindDescChange"/>
     </view>
   </view>
 
