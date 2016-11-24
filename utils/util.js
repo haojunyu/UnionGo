@@ -16,6 +16,14 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+
+var i = 8;
+function nextId() {
+  return ++i;
+}
+
+
+
 module.exports = {
   formatTime: formatTime
 }

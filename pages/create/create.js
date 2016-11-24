@@ -6,21 +6,21 @@ Page({
     time: '',
     _type: 0,
     markers: [{
-      latitude: 23.099994,
-      longitude: 113.324520,
+      latitude: 31.230416,
+      longitude: 121.473701,
       name: '集合点'
+    }],
+    covers: [{
+      latitude: 31.230416,
+      longitude: 121.473701,
+      // iconPath: '../images/car.png',
+      rotate: 10
+    }, {
+      latitude: 31.230416,
+      longitude: 121.473701,
+      // iconPath: '../images/car.png',
+      rotate: 90
     }]
-    // covers: [{
-    //   latitude: 23.099794,
-    //   longitude: 113.324520,
-    //   // iconPath: '../images/car.png',
-    //   rotate: 10
-    // }, {
-    //   latitude: 23.099298,
-    //   longitude: 113.324129,
-    //   // iconPath: '../images/car.png',
-    //   rotate: 90
-    // }]
   },
 
   onShow: function() {
@@ -55,8 +55,8 @@ Page({
       time: '',
       _type: 0,
       markers: [{
-        latitude: 23.099994,
-        longitude: 113.324520,
+        latitude: 31.230416,
+        longitude: 121.473701,
         name: '集合点'
       }]
     })
@@ -93,8 +93,10 @@ Page({
   storeNew: function() {
     console.log("store new unionGo")
     
+    var nextId = nextId();
+
     var newUnionGo = {
-      id: '7',
+      id: nextId,
       title: this.data.title,
       desc: this.data.desc,
       date: this.data.date,

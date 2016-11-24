@@ -17,7 +17,7 @@
   <view class="section-title">参与的UnionGo</view>
   <view class="list">
     <block wx:for="{{attendedActivites}}" wx:key="key" wx:for-item="item">
-       <button class="item" bindtap="viewDetail" data-category="attended" data-id="{{item.id}}"><icon type="info" size="14"/>
+       <button class="item" bindtap="viewDetail" data-category="attended" data-id="{{item.id}}"><icon type="success" size="14"/>
       {{item.title}}</button>
     </block>
   </view>
@@ -25,7 +25,7 @@
   <view class="section-title">UnionGo推送</view>
   <view class="list">
     <block wx:for="{{moreActivities}}" wx:key="key" wx:for-item="item">
-       <button class="item" bindtap="viewDetail" data-category="more" data-id="{{item.id}}"><icon type="info" size="14"/>
+       <button class="item" bindtap="viewDetail" data-category="more" data-id="{{item.id}}"><icon type="warn" size="14"/>
       {{item.title}}</button>
     </block>
   </view>
