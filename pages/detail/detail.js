@@ -20,13 +20,7 @@ Page ({
     var category = option.category
     var that = this;
     var sets = wx.getStorageSync(category)
-    var activity
-    for (let i=0; i<sets.length; ++i) {
-      if (sets[i].id == id) {
-        activity = sets[i]
-        break
-      }
-    }
+    var activity = sets[id]
 
     that.setData({
         id: activity.id,
@@ -41,5 +35,21 @@ Page ({
             name: '集合点'
         }]
     })    
+  },
+
+  doSign: function() {
+      wx.navigateBack({
+        delta: 2, // 回退前 delta(默认为1) 页面
+        success: function(res){
+          // success
+        },
+        fail: function() {
+          // fail
+        },
+        complete: function() {
+          // complete
+        }
+      })
   }
+
 })

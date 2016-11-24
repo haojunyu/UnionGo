@@ -8,7 +8,8 @@ Page({
     userInfo: {},
     raisedActivities: [],
     attendedActivites: [],
-    moreActivities: []
+    moreActivities: [],
+    newBtn: "../../imgs/new.png"
   },
 
   onShow: function () {
@@ -39,14 +40,15 @@ Page({
         })
       }
     })
-    wx.getStorage({
-      key: 'more',
-      success: function(res){
-        that.setData({
-          moreActivities:res.data
-        })
-      }
-    })
+    
+    // wx.getStorage({
+    //   key: 'more',
+    //   success: function(res){
+    //     that.setData({
+    //       moreActivities:res.data
+    //     })
+    //   }
+    // })
   },
 
   viewDetail: function(e) {
@@ -54,6 +56,21 @@ Page({
     var category = e.target.dataset.category
     wx.navigateTo({
       url: '../../pages/detail/detail?category=' + category + '&id=' + id,
+    })
+  }, 
+  
+  onCreate: function(e) {
+    wx.navigateTo({
+      url: '../../pages/create/create',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
     })
   }
 

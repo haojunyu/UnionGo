@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/create/create",
     "pages/detail/detail",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/my/my"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -20,8 +21,8 @@
       "iconPath": "imgs/home.png",
       "selectedIconPath": "imgs/home-actived.png"
     }, {
-      "pagePath": "pages/create/create",
-      "text": "发起集结",
+      "pagePath": "pages/my/my",
+      "text": "我的集结",
       "iconPath": "imgs/board.png",
       "selectedIconPath": "imgs/board-actived.png"
     }, {

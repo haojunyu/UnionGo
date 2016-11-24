@@ -44,7 +44,7 @@
 
   <view class="section">
     <block wx:if="{{_type == 1 || _type == 0}}">
-      <button type="primary">手动签到</button>
+      <button type="primary" bindtap="doSign">手动签到</button>
     </block>
     <block wx:elif="{{_type == 2}}">
       <button type="primary">参加集结</button>

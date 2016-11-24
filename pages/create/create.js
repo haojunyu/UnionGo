@@ -11,18 +11,18 @@ Page({
       latitude: 31.230416,
       longitude: 121.473701,
       name: '集合点'
-    }],
-    covers: [{
-      latitude: 31.230416,
-      longitude: 121.473701,
-      // iconPath: '../images/car.png',
-      rotate: 10
-    }, {
-      latitude: 31.230416,
-      longitude: 121.473701,
-      // iconPath: '../images/car.png',
-      rotate: 90
     }]
+    // covers: [{
+    //   latitude: 31.230416,
+    //   longitude: 121.473701,
+    //   iconPath: '../imgs/home.png',
+    //   rotate: 10
+    // }, {
+    //   latitude: 31.230416,
+    //   longitude: 121.473701,
+    //   iconPath: '../imgs/home.png',
+    //   rotate: 90
+    // }]
   },
 
   onShow: function() {
@@ -114,7 +114,7 @@ Page({
       key: 'raised',
       success: function(res){
         var raised = res.data
-        raised.push(newUnionGo)
+        raised[nextId] = newUnionGo
         wx.setStorageSync('raised', raised)
         wx.showToast({
           title: '创建成功',
@@ -147,9 +147,20 @@ Page({
 
   // 取消新建UnionGo, 并回退到主页
   cancelNew: function() {
+    console.log(getCurrentPages())
     wx.navigateBack({
-      delta: 1 // 回退前 delta(默认为1) 页面
+      delta: 0, // 回退前 delta(默认为1) 页面
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
     })
+    
   }
 
 
