@@ -1,3 +1,5 @@
+var util = require('../../utils/util.js')
+
 Page({
   data: {
     title: '',
@@ -93,7 +95,7 @@ Page({
   storeNew: function() {
     console.log("store new unionGo")
     
-    var nextId = nextId();
+    var nextId = util.nextId();
 
     var newUnionGo = {
       id: nextId,

@@ -25,5 +25,6 @@ function nextId() {
 
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  nextId: nextId
 }
