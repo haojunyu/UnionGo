@@ -56,20 +56,41 @@ Page({
     var category = e.target.dataset.category
     wx.navigateTo({
       url: '../../pages/detail/detail?category=' + category + '&id=' + id,
-    })
-  }, 
-  
-  onCreate: function(e) {
-    wx.navigateTo({
-      url: '../../pages/create/create',
       success: function(res){
-        // success
+        wx.showToast({
+          title: '加载中',
+          icon: 'loading',
+          duration: 3000
+        })
       },
       fail: function() {
         // fail
       },
       complete: function() {
-        // complete
+        setTimeout(function(){
+          wx.hideToast()
+        },1000)
+      }
+    })
+  },
+
+  onCreate: function(e) {
+    wx.navigateTo({
+      url: '../../pages/create/create',
+      success: function(res){
+        wx.showToast({
+          title: '加载中',
+          icon: 'loading',
+          duration: 3000
+        })
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        setTimeout(function(){
+          wx.hideToast()
+        },1000)
       }
     })
   }

@@ -33,7 +33,8 @@ Page ({
             latitude: activity.location.latitude,
             longitude: activity.location.longitude,
             name: '集合点'
-        }]
+        }],
+        signed: activity.signed
     })    
   },
 

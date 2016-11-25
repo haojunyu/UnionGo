@@ -12,7 +12,8 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 0
+        _type: 0,
+        signed: 0
       }, 
       2: {
         id: '2',
@@ -24,7 +25,8 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 0
+        _type: 0,
+        signed: 0
       }
     },
 
@@ -39,7 +41,8 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 1
+        _type: 1,
+        signed: 0
       }, 
       4: {
         id: '4',
@@ -51,7 +54,19 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 1
+        signed: 1
+      },
+      9: {
+        id: '9',
+        title: '编程马拉松即将开启',
+        desc: '发挥你的热情和智慧，参与银联第一期编程马拉松比赛中来吧，Iphone7、无人机、VR眼镜，只要你有才，奖品任你拿',
+        date: '2016-11-25',
+        time: '14:00',
+        location: {
+          latitude: 31.230416,
+          longitude: 121.473701
+        },
+        signed: 1
       }
     },
 

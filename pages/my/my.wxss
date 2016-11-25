@@ -36,7 +36,8 @@ icon {
   font-size: 0.8em;
   color: #009933;
   margin-left: 20rpx;
-  margin-top: 20rpx;
+  margin-top: 50rpx;
+  padding: 10rpx 10rpx;
 }
 
 

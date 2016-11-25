@@ -42,11 +42,14 @@
     </view>
   </view>
 
-  <view class="section">
-    <block wx:if="{{_type == 1 || _type == 0}}">
+  <view class="section" style="padding-top:20rpx;">
+    <block wx:if="{{(_type == 1 || _type == 0) && signed == 0 }}">
       <button type="primary" bindtap="doSign">手动签到</button>
     </block>
+    <block wx:elif="{{signed == 1 }}">
+      <button disabled="true" type="primary" style="color:#fff">您已签到</button>
+    </block>
     <block wx:elif="{{_type == 2}}">
-      <button type="primary">参加集结</button>
+      <button type="warn">参加集结</button>
     </block>
 </view>

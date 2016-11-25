@@ -17,7 +17,13 @@
   <view class="section-title">参与的UnionGo</view>
   <view class="list">
     <block wx:for="{{attendedActivites}}" wx:key="key" wx:for-item="item">
-       <button class="item" bindtap="viewDetail" data-category="attended" data-id="{{item.id}}"><icon type="success" size="14"/>
+       <button class="item" bindtap="viewDetail" data-category="attended" data-id="{{item.id}}">
+       <block wx:if="{{item.signed == 0}}">
+         <icon type="waiting" size="14"/>
+       </block>
+       <block wx:else="{{item.signed == 0}}">
+         <icon type="success_circle" size="14"/>
+       </block>
       {{item.title}}</button>
     </block>
   </view>
