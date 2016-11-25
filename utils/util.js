@@ -23,8 +23,13 @@ function nextId() {
 }
 
 
+function minuteBetween(begDate, endDate) {
+  return (Date.parse(endDate) - Date.parse(begDate))/60000
+}
+
 
 module.exports = {
   formatTime: formatTime,
-  nextId: nextId
+  nextId: nextId,
+  minuteBetween: minuteBetween
 }
