@@ -266,7 +266,7 @@ App({
           }
         }
       }
-    }, 5000)
+    }, 30000)
   },
 
   getUserInfo:function(cb){
