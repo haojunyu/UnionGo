@@ -5,9 +5,9 @@ var app = getApp()
 Page({
   data: {
     userInfo: {},
-    raisedActivities: [],
-    attendedActivities: [],
-    moreActivities: []
+    raisedActivities: {},
+    attendedActivities: {},
+    moreActivities: {}
   },
 
   onShow: function () {
@@ -70,16 +70,21 @@ Page({
       for (let key in pushed) {
           currentMore[key] = pushed[key]
       }  
-      this.setData({
-        moreActivities: currentMore
-      })
       wx.setStorageSync('more', currentMore)
       wx.showToast({
         title: '更新推送成功',
         icon: 'success',
         duration: 1000
       })
-    }  
+    } 
+
+    var raised = wx.getStorageSync('raised')
+    var attended = wx.getStorageSync('attended')
+    this.setData({
+      raisedActivities: raised,
+      attendedActivities: attended,
+      moreActivities: currentMore
+    }) 
   }
 
 })
