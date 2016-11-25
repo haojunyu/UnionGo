@@ -57,19 +57,13 @@ Page({
     wx.navigateTo({
       url: '../../pages/detail/detail?category=' + category + '&id=' + id,
       success: function(res){
-        wx.showToast({
-          title: '加载中',
-          icon: 'loading',
-          duration: 3000
-        })
+
       },
       fail: function() {
         // fail
       },
       complete: function() {
-        setTimeout(function(){
-          wx.hideToast()
-        },1000)
+          
       }
     })
   },

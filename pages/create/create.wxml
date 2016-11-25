@@ -41,6 +41,17 @@
   </view>
 
 
+  <view class="section">
+    <view class="title">选择标签</view>
+    <view style="flex-direction:row;">
+    <block wx:for="{{tag}}" wx:key="key" wx:for-item="item">
+      <button class="tag flex-item">{{item}}</button>
+    </block>
+    </view>
+  </view>
+  
+
+
   <view class="btn-section">
     <button type="primary" bindtap="storeNew">确认</button>
     <button type="warn" bindtap="cancelNew">取消</button>

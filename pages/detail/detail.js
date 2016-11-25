@@ -21,7 +21,7 @@ Page ({
     var that = this;
     var sets = wx.getStorageSync(category)
     var activity = sets[id]
-    console.log(activity.tag)
+    // console.log(activity.tag)
     that.setData({
         id: activity.id,
         title: activity.title,
@@ -39,11 +39,38 @@ Page ({
     })    
   },
 
-  doSign: function() {
+  doSign: function(e) {
+      this.setData({
+        signed: 1
+      })
+      var category = e.target.dataset.category
+      var _set = wx.getStorageSync(category)
+    
+      var activity = {
+        id: this.data.id,
+        title: this.data.title,
+        desc: this.data.desc,
+        date: this.data.date,
+        time: this.data.time,
+        _type: this.data._type,
+        location: {
+            latitude: this.data.markers[0].latitude,
+            longitude: this.data.markers[0].longitude
+        },
+        signed: this.data.signed,
+        tag: this.data.tag
+      }
+      _set[this.data.id] = activity
+      wx.setStorageSync(category, _set)
+
       wx.navigateBack({
         delta: 2, // 回退前 delta(默认为1) 页面
         success: function(res){
-          // success
+          wx.showToast({
+             title: '签到成功',
+              icon: 'success',
+              duration: 2000
+          })
         },
         fail: function() {
           // fail
@@ -51,6 +78,39 @@ Page ({
         complete: function() {
           // complete
         }
+      })
+  },
+
+  doAttend: function() {
+      this.setData({
+        _type: 1
+      })
+      var more = wx.getStorageSync('more')
+      delete more[this.data.id]
+      wx.setStorageSync('more', more)
+      console.log(more)
+
+
+      var attended = wx.getStorageSync('attended')
+      var activity = {
+        id: this.data.id,
+        title: this.data.title,
+        desc: this.data.desc,
+        date: this.data.date,
+        time: this.data.time,
+        _type: this.data._type,
+        location: {
+            latitude: this.data.markers[0].latitude,
+            longitude: this.data.markers[0].longitude
+        },
+        signed: this.data.signed,
+        tag: this.data.tag
+      }
+      attended[this.data.id] = activity
+      wx.setStorageSync('attended', attended)
+
+      wx.navigateBack({
+        delta: 2, // 回退前 delta(默认为1) 页面
       })
   }
 

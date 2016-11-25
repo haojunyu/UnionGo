@@ -11,18 +11,12 @@ Page({
       latitude: 31.230416,
       longitude: 121.473701,
       name: '集合点'
-    }]
-    // covers: [{
-    //   latitude: 31.230416,
-    //   longitude: 121.473701,
-    //   iconPath: '../imgs/home.png',
-    //   rotate: 10
-    // }, {
-    //   latitude: 31.230416,
-    //   longitude: 121.473701,
-    //   iconPath: '../imgs/home.png',
-    //   rotate: 90
-    // }]
+    }],
+    tag: {
+      'UnionGo': 'UnionGo',
+      'meeting': 'meeting',
+      'fun' : 'fun'
+    }
   },
 
   onShow: function() {

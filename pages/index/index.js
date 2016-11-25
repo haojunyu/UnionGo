@@ -5,9 +5,9 @@ var app = getApp()
 Page({
   data: {
     userInfo: {},
-    raisedActivities: [],
-    attendedActivites: [],
-    moreActivities: []
+    raisedActivities: {},
+    attendedActivities: {},
+    moreActivities: {}
   },
 
   onShow: function () {
@@ -33,7 +33,7 @@ Page({
       key: 'attended',
       success: function(res){
         that.setData({
-          attendedActivites:res.data
+          attendedActivities:res.data
         })
       }
     })
@@ -53,21 +53,38 @@ Page({
     wx.navigateTo({
       url: '../../pages/detail/detail?category=' + category + '&id=' + id,
       success: function(res){
-        wx.showToast({
-          title: '加载中',
-          icon: 'loading',
-          duration: 3000
-        })
       },
       fail: function() {
         // fail
       },
       complete: function() {
-        setTimeout(function(){
-          wx.hideToast()
-        },1000)
       }
     })
+  },
+
+  onPullDownRefresh: function() {
+    // 模拟加载推送的unionGo活动
+    var pushed = app.data.pushedActivities
+    var currentMore = wx.getStorageSync('more');
+    if (pushed != null) {
+      for (let key in pushed) {
+          currentMore[key] = pushed[key]
+      }  
+      wx.setStorageSync('more', currentMore)
+      wx.showToast({
+        title: '更新推送成功',
+        icon: 'success',
+        duration: 1000
+      })
+    } 
+
+    var raised = wx.getStorageSync('raised')
+    var attended = wx.getStorageSync('attended')
+    this.setData({
+      raisedActivities: raised,
+      attendedActivities: attended,
+      moreActivities: currentMore
+    }) 
   }
 
 })
