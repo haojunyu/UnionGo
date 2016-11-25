@@ -151,6 +151,7 @@ App({
     wx.setStorageSync("attended", this.data.attendedActivites)
     wx.setStorageSync("more", this.data.moreActivities)
   },
+
   getUserInfo:function(cb){
     var that = this
     if(this.globalData.userInfo){
