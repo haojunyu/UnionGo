@@ -68,6 +68,26 @@ Page({
         },1000)
       }
     })
+  },
+
+  onPullDownRefresh: function() {
+    // 模拟加载推送的unionGo活动
+    var pushed = app.data.pushedActivities
+    var currentMore = wx.getStorageSync('more');
+    if (pushed != null) {
+      for (let key in pushed) {
+          currentMore[key] = pushed[key]
+      }  
+      this.setData({
+        moreActivities: currentMore
+      })
+      wx.setStorageSync('more', currentMore)
+      wx.showToast({
+        title: '更新推送成功',
+        icon: 'success',
+        duration: 500
+      })
+    }  
   }
 
 })
