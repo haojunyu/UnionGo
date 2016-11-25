@@ -16,16 +16,39 @@
 
   <view class="section-title">参与的UnionGo</view>
   <view class="list">
-    <block wx:for="{{attendedActivites}}" wx:key="key" wx:for-item="item">
-       <button class="item" bindtap="viewDetail" data-category="attended" data-id="{{item.id}}">
-       <block wx:if="{{item.signed == 0}}">
+    <block wx:for="{{attendedActivities}}" wx:key="key" wx:for-item="item">
+       <!--<block wx:if="{{item.signed == 0}}">
          <icon type="waiting" size="14"/>
+       </block>-->
+       <block wx:if="{{item.signed == 1}}">
+         <button class="item" bindtap="viewDetail" data-category="attended" data-id="{{item.id}}">
+          <icon type="success_circle" size="14"/>
+          {{item.title}}</button>
        </block>
-       <block wx:else="{{item.signed == 0}}">
-         <icon type="success_circle" size="14"/>
-       </block>
-      {{item.title}}</button>
     </block>
+    <block wx:for="{{raisedActivities}}" wx:key="key" wx:for-item="item">
+       <block wx:if="{{item.signed == 1}}">
+         <button class="item" bindtap="viewDetail" data-category="raised" data-id="{{item.id}}">
+           <icon type="success_circle" size="14"/>
+        {{item.title}}</button>
+       </block>
+    </block>
+
+    <block wx:for="{{attendedActivities}}" wx:key="key" wx:for-item="item">
+       <block wx:if="{{item.signed == 0}}">
+         <button class="item" bindtap="viewDetail" data-category="attended" data-id="{{item.id}}">
+          <icon type="waiting" size="14"/>
+          {{item.title}}</button>
+       </block>
+    </block>
+    <block wx:for="{{raisedActivities}}" wx:key="key" wx:for-item="item">
+       <block wx:if="{{item.signed == 0}}">
+         <button class="item" bindtap="viewDetail" data-category="raised" data-id="{{item.id}}">
+           <icon type="waiting" size="14"/>
+        {{item.title}}</button>
+       </block>
+    </block>
+
   </view>
 
   <view class="section-title">UnionGo推送</view>

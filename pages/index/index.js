@@ -6,7 +6,7 @@ Page({
   data: {
     userInfo: {},
     raisedActivities: [],
-    attendedActivites: [],
+    attendedActivities: [],
     moreActivities: []
   },
 
@@ -33,7 +33,7 @@ Page({
       key: 'attended',
       success: function(res){
         that.setData({
-          attendedActivites:res.data
+          attendedActivities:res.data
         })
       }
     })
@@ -53,19 +53,11 @@ Page({
     wx.navigateTo({
       url: '../../pages/detail/detail?category=' + category + '&id=' + id,
       success: function(res){
-        wx.showToast({
-          title: '加载中',
-          icon: 'loading',
-          duration: 3000
-        })
       },
       fail: function() {
         // fail
       },
       complete: function() {
-        setTimeout(function(){
-          wx.hideToast()
-        },1000)
       }
     })
   },
@@ -85,7 +77,7 @@ Page({
       wx.showToast({
         title: '更新推送成功',
         icon: 'success',
-        duration: 500
+        duration: 1000
       })
     }  
   }
