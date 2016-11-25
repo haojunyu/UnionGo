@@ -205,11 +205,6 @@ App({
 
     }, 5000)
   },
-  onShow: function() {
-    var $this = this;
-    var xhr = new XMLHttpRequest;
-
-  },
   getUserInfo:function(cb){
     var that = this
     if(this.globalData.userInfo){
