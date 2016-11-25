@@ -35,8 +35,8 @@
   <view class="section">
     <view class="title">集结地点</view>
     <view class="map">
-        <map longitude="113.324520" latitude="23.099994" markers="{{markers}}" 
-        covers="{{covers}}" 
+        <map longitude="113.324520" latitude="23.099994" markers="{{markers}}"
+        covers="{{covers}}"
         style="width: auto; height: 200px; font-size: 0.8em;">
         </map>
     </view>
@@ -52,16 +52,16 @@
   </view>
 
   <view class="section" style="padding-top:20rpx;">
-    <block wx:if="{{_type == 0 && signed == 0 }}">
+    <block wx:if="{{type == 0 && signed == 0 }}">
       <button type="primary" bindtap="doSign" data-category="raised">手动签到</button>
     </block>
-    <block wx:elif="{{_type == 1 && signed == 0 }}">
+    <block wx:elif="{{type == 1 && signed == 0 }}">
       <button type="primary" bindtap="doSign" data-category="attended">手动签到</button>
     </block>
     <block wx:elif="{{signed == 1 }}">
       <button disabled="true" type="primary" style="color:#fff">您已签到</button>
     </block>
-    <block wx:elif="{{_type == 2}}">
-      <button type="warn" bindtap="doAttend">参加集结</button>
+    <block wx:elif="{{type == 2}}">
+      <button type="warn" bindtap="doAttend" data-id="{{id}}">参加集结</button>
     </block>
 </view>
