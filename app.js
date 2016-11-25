@@ -1,4 +1,8 @@
 //app.js
+var interval  // 定时器
+var duration = 200  // 提前或迟到时间（分）
+var distance = 100  // 距离签到点距离（米）
+
 App({
   data: {
     tags: {
@@ -20,7 +24,7 @@ App({
         _type: 0,
         signed: 0,
         tag: ['unionGo', 'fun']
-      }, 
+      },
       2: {
         id: '2',
         title: '个性化团队例会',
@@ -37,7 +41,7 @@ App({
       }
     },
 
-    attendedActivites: {
+    attendedActivities: {
       3: {
         id: '3',
         title: '参加银联扬帆第26期新员工培训',
@@ -51,12 +55,12 @@ App({
         _type: 1,
         signed: 1,
         tag: ['unionGo']
-      }, 
+      },
       4: {
         id: '4',
         title: '银联消防演练活动',
         desc: '请大家听到铃声之后，按照要求走消防通道，并到研发大楼外指定场地集合',
-        date: '2016-10-18',
+        date: '2016-11-25',
         time: '11:11',
         location: {
           latitude: 31.230416,
@@ -71,7 +75,7 @@ App({
         title: '编程马拉松即将开启',
         desc: '发挥你的热情和智慧，参与银联第一期编程马拉松比赛中来吧，Iphone7、无人机、VR眼镜，只要你有才，奖品任你拿',
         date: '2016-11-25',
-        time: '14:00',
+        time: '15:00',
         location: {
           latitude: 31.230416,
           longitude: 121.473701
@@ -96,7 +100,7 @@ App({
         _type: 2,
         signed: 0,
         tag: ['unionGo']
-      }, 
+      },
       6: {
         id: '6',
         title: '医疗保险集中咨询',
@@ -148,8 +152,63 @@ App({
     logs.unshift(Date.now())
 
     wx.setStorageSync("raised", this.data.raisedActivities)
-    wx.setStorageSync("attended", this.data.attendedActivites)
+    wx.setStorageSync("attended", this.data.attendedActivities)
     wx.setStorageSync("more", this.data.moreActivities)
+
+    interval = setInterval(function() {
+      // 加载参加的活动
+      var attActs = wx.getStorageSync('attended')
+      //console.log(attActs)
+      for(var key in attActs){
+        // 判断每一个参加的活动是否符合签到：未签+时间+位置
+        if(attActs[key].signed == 0){
+          //第一个条件：未签
+          //console.log(attActs[key].date + " " + attActs[key].time)
+          //console.log(Date.now())
+          //console.log(Date.parse('2016/11/25 11:11'))
+          //console.log(attActs[key].date.replace(/-/g,"/") + " " + attActs[key].time + ':00')
+          var dur = (Date.now()-Date.parse(attActs[key].date.replace(/-/g,"/") + " " + attActs[key].time))/60000
+
+
+          if(Math.abs(dur) < duration) {
+            //第二个条件：时间在duration分钟内
+            var latitude = null
+            var longitude = null
+            var accuracy = null
+            wx.getLocation({
+              type: 'gcj02',
+              success: function(res){
+                console.log(res)
+                latitude = res.latitude
+                longitude = res.longitude
+
+                //console.log('纬度' + latitude)
+                //console.log('经度' + longitude)
+              }
+
+            })
+
+/*
+            wx.showToast({
+              title: '纬度' + latitude,
+              icon: 'success',
+              duration: 1000
+            })
+            */
+          }
+
+
+
+        }
+
+      }
+
+    }, 5000)
+  },
+  onShow: function() {
+    var $this = this;
+    var xhr = new XMLHttpRequest;
+
   },
   getUserInfo:function(cb){
     var that = this
