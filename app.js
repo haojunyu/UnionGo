@@ -1,6 +1,11 @@
 //app.js
 App({
   data: {
+    tags: {
+      'uninoGo' : ['1', '2', '3', '4', '9', '6', '7', '8'],
+      'fun': ['1', '5'],
+      'meeting': ['2']
+    },
     raisedActivities: {
       1: {
         id: '1',
@@ -13,7 +18,8 @@ App({
           longitude: 121.473701
         },
         _type: 0,
-        signed: 0
+        signed: 0,
+        tag: ['unionGo', 'fun']
       }, 
       2: {
         id: '2',
@@ -26,7 +32,8 @@ App({
           longitude: 121.473701
         },
         _type: 0,
-        signed: 0
+        signed: 0,
+        tag: ['unionGo', 'meeting']
       }
     },
 
@@ -42,7 +49,8 @@ App({
           longitude: 121.473701
         },
         _type: 1,
-        signed: 0
+        signed: 1,
+        tag: ['unionGo']
       }, 
       4: {
         id: '4',
@@ -54,7 +62,9 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        signed: 1
+        _type: 1,
+        signed: 0,
+        tag: ['unionGo']
       },
       9: {
         id: '9',
@@ -66,7 +76,9 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        signed: 1
+        _type: 1,
+        signed: 0,
+        tag: ['unionGo']
       }
     },
 
@@ -81,7 +93,9 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 2
+        _type: 2,
+        signed: 0,
+        tag: ['unionGo']
       }, 
       6: {
         id: '6',
@@ -93,7 +107,9 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 2
+        _type: 2,
+        signed: 0,
+        tag: ['unionGo']
       },
       7: {
         id: '7',
@@ -105,7 +121,9 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 2
+        _type: 2,
+        signed: 0,
+        tag: ['unionGo']
       },
       8: {
         id: '8',
@@ -117,7 +135,9 @@ App({
           latitude: 31.230416,
           longitude: 121.473701
         },
-        _type: 2
+        _type: 2,
+        signed: 0,
+        tag: ['unionGo']
       }
     }
   },
