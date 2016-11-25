@@ -1,7 +1,8 @@
 //app.js
+var util = require('./utils/util.js')
 var interval  // 定时器
 var duration = 200  // 提前或迟到时间（分）
-var distance = 100  // 距离签到点距离（米）
+var distance = 100000  // 距离签到点距离（米）
 
 App({
   data: {
@@ -61,7 +62,7 @@ App({
         title: '银联消防演练活动',
         desc: '请大家听到铃声之后，按照要求走消防通道，并到研发大楼外指定场地集合',
         date: '2016-11-25',
-        time: '11:11',
+        time: '15:11',
         location: {
           latitude: 31.230416,
           longitude: 121.473701
@@ -75,10 +76,10 @@ App({
         title: '编程马拉松即将开启',
         desc: '发挥你的热情和智慧，参与银联第一期编程马拉松比赛中来吧，Iphone7、无人机、VR眼镜，只要你有才，奖品任你拿',
         date: '2016-11-25',
-        time: '15:00',
+        time: '19:00',
         location: {
-          latitude: 31.230416,
-          longitude: 121.473701
+          latitude: 31.23454,
+          longitude: 121.6622
         },
         _type: 1,
         signed: 0,
@@ -158,10 +159,13 @@ App({
     interval = setInterval(function() {
       // 加载参加的活动
       var attActs = wx.getStorageSync('attended')
+      console.log(attActs)
       //console.log(attActs)
-      for(var key in attActs){
+      for(let key in attActs){
         // 判断每一个参加的活动是否符合签到：未签+时间+位置
-        if(attActs[key].signed == 0){
+        console.log('signed:'+attActs[key].signed)
+        if(attActs[key].signed != 1){
+
           //第一个条件：未签
           //console.log(attActs[key].date + " " + attActs[key].time)
           //console.log(Date.now())
@@ -182,27 +186,26 @@ App({
                 latitude = res.latitude
                 longitude = res.longitude
 
-                //console.log('纬度' + latitude)
-                //console.log('经度' + longitude)
+                console.log('lat1:'+latitude+';lon1:'+longitude)
+                console.log('lat2:'+attActs[key].location.latitude+';lon2:'+attActs[key].location.longitude)
+                var dist = util.getDisance(latitude, longitude, attActs[key].location.latitude, attActs[key].location.longitude)
+                console.log(dist)
+
+                if(dist < distance){
+                  //第三个条件：距离在distance内
+                  attActs[key].signed=1
+                  wx.showToast({
+                    title: attActs[key].title + ' 已自动签到！' ,
+                    icon: 'success',
+                    duration: 1000
+                  })
+                  wx.setStorageSync('attended',attActs)
+                }
               }
-
             })
-
-/*
-            wx.showToast({
-              title: '纬度' + latitude,
-              icon: 'success',
-              duration: 1000
-            })
-            */
           }
-
-
-
         }
-
       }
-
     }, 5000)
   },
   getUserInfo:function(cb){
