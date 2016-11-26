@@ -8,22 +8,6 @@ select ActivityTag.activityId,Tag.tagId,tagName
 from Tag join ActivityTag on Tag.tagId=ActivityTag.tagId;
 
 
--- 触发器
-DROP TRIGGER IF EXISTS InsertUserActivity;
-delimiter //
-create trigger InsertUserActivity    
-after insert on UserActivity   
-for each row    
-Begin   
-IF new.userId=1 
-THEN   
-	insert into UserActivity(userId,activityId,type,signed) values('2',new.activityId,'2','0');  
-ELSE   
-	insert into UserActivity(userId,activityId,type,signed) values('1',new.activityId,'2','0'); 
-END IF;    
-end;//    
-delimiter ; 
-
 
 -- raised
 select * from UserActivityDetail where userId=? and type='0';

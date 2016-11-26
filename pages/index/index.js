@@ -33,7 +33,7 @@ Page({
       key: 'attended',
       success: function(res){
         that.setData({
-          attendedActivites:res.data
+          attendedActivities:res.data
         })
       }
     })
