@@ -34,11 +34,12 @@
 
   <view class="section">
     <view class="title">集结地点</view>
-    <view class="map">
-        <map longitude="113.324520" latitude="23.099994" markers="{{markers}}"
-        covers="{{covers}}"
-        style="width: auto; height: 200px; font-size: 0.8em;">
-        </map>
+    <view class="input">
+      <input value="{{addrName}}" bindfocus="chooseaddr"/>
+    </view>
+    <view class="map" style="margin-top:30rpx;">
+        <map scale="16" longitude="{{point.longitude}}" latitude="{{point.latitude}}"
+        covers="{{covers}}" style="width: auto; height: 200px; font-size: 0.8em;"></map>
     </view>
   </view>
 

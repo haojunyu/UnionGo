@@ -7,6 +7,7 @@ Page({
     date: '',
     time: '',
     addrName:'选取集结点',
+    txtcolor:'#CCCCCC',
     _type: 0,
     point:{
       latitude: '',
@@ -15,11 +16,7 @@ Page({
     covers: [{
       latitude: '',
       longitude: '',
-      iconPath: '../imgs/addr0.png'
-    },{
-      latitude: '',
-      longitude: '',
-      iconPath: '../imgs/addr1.png'
+      iconPath: '../../imgs/addr0.png'
     }],
     tag: {
       'UnionGo': 'UnionGo',
@@ -44,12 +41,8 @@ Page({
         var m_covers = [{
            latitude: m_latitude,
            longitude: m_longitude,
-           iconPath: '../imgs/addr0.png'
-            },{
-              latitude: '',
-              longitude: '',
-              iconPath: '../imgs/addr1.png'
-      }];
+           iconPath: '../../imgs/addr0.png'
+            }];
       that.setData( {covers:m_covers} );
       that.setData( {point: m_point});
 
@@ -108,16 +101,13 @@ Page({
       var m_covers = [{
          latitude: m_latitude,
          longitude: m_longitude,
-         iconPath: '../imgs/addr0.png'
-          },{
-            latitude: '',
-            longitude: '',
-            iconPath: '../imgs/addr1.png'
-    }];
+         iconPath: '../../imgs/addr0.png'
+          }];
         that.setData( {covers:m_covers} );
         that.setData( {point: m_point});
         var m_addrname = res.name+'('+res.address+')'
         that.setData( {addrName:m_addrname} )
+        that.setData( {txtcolor:'#00DDAA'} )
 
     }
 
@@ -156,7 +146,7 @@ Page({
           duration: 2000,
           complete: function() {
             wx.navigateBack({
-              delta: 1, // 回退前 delta(默认为1) 页面
+              delta: 2, // 回退前 delta(默认为1) 页面
               success: function(res){
                 // success
               },
@@ -183,7 +173,7 @@ Page({
   cancelNew: function() {
     console.log(getCurrentPages())
     wx.navigateBack({
-      delta: 0, // 回退前 delta(默认为1) 页面
+      delta: 1, // 回退前 delta(默认为1) 页面
       success: function(res){
         // success
       },

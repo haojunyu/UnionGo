@@ -63,28 +63,32 @@ Page({
   },
 
   onPullDownRefresh: function() {
-    // 模拟加载推送的unionGo活动
-    var pushed = app.data.pushedActivities
-    var currentMore = wx.getStorageSync('more');
-    if (pushed != null) {
-      for (let key in pushed) {
-          currentMore[key] = pushed[key]
-      }  
-      wx.setStorageSync('more', currentMore)
-      wx.showToast({
-        title: '更新推送成功',
-        icon: 'success',
-        duration: 1000
-      })
-    } 
+    wx.request({
+      url: 'http://172.18.51.8:8080/acp/acts?userId='+app.data.userId,
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function(res){
+        console.log(res.data)
+        wx.setStorageSync("raised", res.data.raisedActivities)
+        wx.setStorageSync("attended", res.data.attendedActivities)
+        wx.setStorageSync("more", res.data.moreActivities)
+      }
+    })
 
     var raised = wx.getStorageSync('raised')
     var attended = wx.getStorageSync('attended')
+    var more = wx.getStorageSync('more')
     this.setData({
       raisedActivities: raised,
       attendedActivities: attended,
-      moreActivities: currentMore
+      moreActivities: more
     }) 
+    wx.showToast({
+      title: '更新推送成功',
+      icon: 'success',
+      duration: 1000
+    })
   }
 
 })
