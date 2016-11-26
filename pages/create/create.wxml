@@ -31,13 +31,12 @@
     </picker>
   </view>
 
-
   <view class="section">
     <view class="title">集结地点</view>
     <view class="input">
-      <input value="{{addrname}}" bindfocus="chooseaddr"/>
+      <input style="color:{{txtcolor}}; text-align:left;font-weight:300" value="{{addrName}}" bindfocus="chooseaddr"/>
     </view>
-    <view class="map">
+    <view class="map" style="margin-top:40rpx">
         <map scale="16" longitude="{{point.longitude}}" latitude="{{point.latitude}}"
         covers="{{covers}}" style="width: auto; height: 200px; font-size: 0.8em;"></map>
     </view>

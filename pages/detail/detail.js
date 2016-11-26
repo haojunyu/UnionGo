@@ -23,7 +23,6 @@ Page ({
     var that = this;
     var sets = wx.getStorageSync(category)
     var activity = sets[id]
-
     // 根据activityId获取tags
     wx.request({
       url: 'http://172.18.51.8:8080/acp/actTags?actId='+id,
@@ -31,7 +30,7 @@ Page ({
         'content-type': 'application/json'
       },
       success: function(res){
-        console.log(res.data)
+        console.log("==" + res.data)
         that.setData({
             id: activity.id,
             title: activity.title,
@@ -39,11 +38,7 @@ Page ({
             date: activity.date,
             time: activity.time,
             type: activity.type,
-            markers: [{
-                latitude: activity.location.latitude,
-                longitude: activity.location.longitude,
-                name: '集合点'
-            }],
+            addrName: activity.location.addrName,
             signed: activity.signed,
             tag: res.data
         })
