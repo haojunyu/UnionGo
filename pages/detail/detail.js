@@ -23,27 +23,29 @@ Page ({
     var that = this;
     var sets = wx.getStorageSync(category)
     var activity = sets[id]
-    // 根据activityId获取tags
-    wx.request({
-      url: 'http://172.18.51.8:8080/acp/actTags?actId='+id,
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function(res){
-        console.log("==" + res.data)
-        that.setData({
-            id: activity.id,
-            title: activity.title,
-            desc: activity.desc,
-            date: activity.date,
-            time: activity.time,
-            type: activity.type,
-            addrName: activity.location.addrName,
-            signed: activity.signed,
-            tag: res.data
-        })
-      }
-    })
+    that.setData({
+        id: activity.id,
+        title: activity.title,
+        desc: activity.desc,
+        date: activity.date,
+        time: activity.time,
+        type: activity.type,
+        addrName: activity.location.addrName,
+        signed: activity.signed,
+        tag: activity.tag
+      })
+
+    // // 根据activityId获取tags
+    // wx.request({
+    //   url: 'http://172.18.51.8:8080/acp/actTags?actId='+id,
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success: function(res){
+    //     console.log("==" + res.data)
+        
+    //   }
+    // })
 
 
   },

@@ -1,5 +1,8 @@
 var util = require('../../utils/util.js')
 
+var app = getApp()
+
+
 Page({
   data: {
     title: '',
@@ -18,14 +21,17 @@ Page({
       longitude: '',
       iconPath: '../../imgs/addr0.png'
     }],
-    tag: {
-      'UnionGo': 'UnionGo',
-      'meeting': 'meeting',
-      'fun' : 'fun'
-    }
+    tags: [
+      
+    ]
   },
 
   onShow: function() {
+    
+    this.setData({
+      tags : wx.getStorageSync('tags')
+    })
+
     var that = this;
     wx.getLocation( {
       type: 'gcj02',
@@ -45,8 +51,8 @@ Page({
             }];
       that.setData( {covers:m_covers} );
       that.setData( {point: m_point});
-
     }
+    
   });
 
 },
@@ -88,6 +94,13 @@ Page({
     })
   },
 
+  checkboxChange: function(e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    this.setData({
+      tag: e.detail.value
+    })
+  },
+
   chooseaddr: function(e) {
     var that = this;
     wx.chooseLocation({success: function( res ){
@@ -118,35 +131,58 @@ Page({
   storeNew: function() {
     console.log("store new unionGo")
 
-    var nextId = util.nextId();
+    var tagsStr = this.data.tag.join("#");
+    // console.log(tagsStr)
 
     var newUnionGo = {
-      id: nextId,
       title: this.data.title,
       desc: this.data.desc,
       date: this.data.date,
       time: this.data.time,
-      location: {
-        latitude: this.data.point.latitude,
-        longitude: this.data.point.longitude,
-        addrName: this.data.addrName
-      },
-      _type: 0
+      latitude: this.data.point.latitude,
+      longitude: this.data.point.longitude,
+      position: this.data.addrName,
+      tags: tagsStr
     }
 
-    wx.getStorage({
-      key: 'raised',
+    console.log(newUnionGo)
+
+    wx.request({
+      url: 'http://172.18.51.8:8080/acp/addAct',
+      data: {
+        userId: app.data.userId,
+        title: this.data.title,
+        desc: this.data.desc,
+        date: this.data.date,
+        time: this.data.time,
+        latitude: this.data.point.latitude,
+        longitude: this.data.point.longitude,
+        position: this.data.addrName,
+        tags: tagsStr
+      },
+      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      header: {"content-type": "application/x-www-form-urlencoded"}, // 设置请求的 header
       success: function(res){
-        var raised = res.data
-        raised[nextId] = newUnionGo
-        wx.setStorageSync('raised', raised)
+        wx.request({
+          url: 'http://172.18.51.8:8080/acp/acts?userId='+app.data.userId,
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function(res){
+            console.log(res.data)
+            wx.setStorageSync("raised", res.data.raisedActivities)
+            wx.setStorageSync("attended", res.data.attendedActivities)
+            wx.setStorageSync("more", res.data.moreActivities)
+          }
+        })
+
         wx.showToast({
           title: '创建成功',
           icon: 'success',
           duration: 2000,
           complete: function() {
             wx.navigateBack({
-              delta: 2, // 回退前 delta(默认为1) 页面
+              delta: 1, // 回退前 delta(默认为1) 页面
               success: function(res){
                 // success
               },
@@ -184,7 +220,6 @@ Page({
         // complete
       }
     })
-
   }
 
 
