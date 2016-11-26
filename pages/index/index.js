@@ -5,9 +5,9 @@ var app = getApp()
 Page({
   data: {
     userInfo: {},
-    raisedActivities: {},
-    attendedActivities: {},
-    moreActivities: {}
+    raisedActivities: [],
+    attendedActivites: [],
+    moreActivities: []
   },
 
   onShow: function () {
@@ -19,7 +19,7 @@ Page({
         userInfo:userInfo
       })
     })
-    
+
     wx.getStorage({
       key: 'raised',
       success: function(res){
@@ -33,7 +33,7 @@ Page({
       key: 'attended',
       success: function(res){
         that.setData({
-          attendedActivities:res.data
+          attendedActivites:res.data
         })
       }
     })
@@ -53,11 +53,19 @@ Page({
     wx.navigateTo({
       url: '../../pages/detail/detail?category=' + category + '&id=' + id,
       success: function(res){
+        wx.showToast({
+          title: '加载中',
+          icon: 'loading',
+          duration: 3000
+        })
       },
       fail: function() {
         // fail
       },
       complete: function() {
+        setTimeout(function(){
+          wx.hideToast()
+        },1000)
       }
     })
   },
@@ -69,14 +77,14 @@ Page({
     if (pushed != null) {
       for (let key in pushed) {
           currentMore[key] = pushed[key]
-      }  
+      }
       wx.setStorageSync('more', currentMore)
       wx.showToast({
         title: '更新推送成功',
         icon: 'success',
         duration: 1000
       })
-    } 
+    }
 
     var raised = wx.getStorageSync('raised')
     var attended = wx.getStorageSync('attended')
@@ -84,7 +92,10 @@ Page({
       raisedActivities: raised,
       attendedActivities: attended,
       moreActivities: currentMore
-    }) 
+    })
   }
+
+
+
 
 })

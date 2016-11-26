@@ -8,6 +8,22 @@ select ActivityTag.activityId,Tag.tagId,tagName
 from Tag join ActivityTag on Tag.tagId=ActivityTag.tagId;
 
 
+-- 触发器
+DROP TRIGGER IF EXISTS InsertUserActivity;
+delimiter //
+create trigger InsertUserActivity    
+after insert on UserActivity   
+for each row    
+Begin   
+IF new.userId=1 
+THEN   
+	insert into UserActivity(userId,activityId,type,signed) values('2',new.activityId,'2','0');  
+ELSE   
+	insert into UserActivity(userId,activityId,type,signed) values('1',new.activityId,'2','0'); 
+END IF;    
+end;//    
+delimiter ; 
+
 
 -- raised
 select * from UserActivityDetail where userId=? and type='0';
@@ -16,7 +32,7 @@ select * from UserActivityDetail where userId=? and type='0';
 select * from UserActivityDetail where userId=? and type='1';
 
 -- pushed
-select * from UserActivityDetail where userId!='1' and type='2';
+select * from UserActivityDetail where userId<>'1' and type='2';
 
 -- 根据activityId取tags
 select tagName from activitytagdetail where activityId=?;
@@ -30,9 +46,12 @@ insert into UserActivity(activityId,userId,type,signed)
 values('14','1','0','0');
 -- values(?,?,?,?);
 
--- 参加活动
 insert into UserActivity(activityId,userId,type,signed)
-values(?,?,'1','0');
+values(?,?,'2','0');
+
+-- 参加活动
+update UserActivity set type='1' where userId=? and activityId=?;
+
 
 -- 签到
-update UserActivity set signed='1' where userId=? 
+update UserActivity set signed='1' where userId=? and activityId=? 
